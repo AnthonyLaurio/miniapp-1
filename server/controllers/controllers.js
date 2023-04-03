@@ -37,8 +37,9 @@ const deleteMovie = async (title) => {
 
 const watchedMovie = async (title) => {
   const movie = await getMovie(title);
+  console.log(movie);
   if (movie.length > 0) {
-    if (movie.watched === true) {
+    if (movie[0].watched === true) {
       await knex('movies').where('title', `${title}`).update({ watched: false });
       return { message: 'Movie unwatched' };
     } else {
