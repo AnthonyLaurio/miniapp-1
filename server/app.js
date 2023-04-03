@@ -1,5 +1,5 @@
 const express = require('express');
-const { getMovies, getSearch, addMovie, deleteMovie } = require('./controllers/controllers.js');
+const { getMovies, getSearch, addMovie, deleteMovie, watchedMovie } = require('./controllers/controllers.js');
 const cors = require('cors');
 const app = express();
 const port = 3001;
@@ -27,6 +27,11 @@ app.post('/insert', async (req, res) => {
 app.delete('/delete/:title', async (req, res) => {
   const { title } = req.params;
   res.send(await deleteMovie(title));
+});
+
+app.get('/watched/:title', async (req, res) => {
+  const { title } = req.params;
+  res.send(await watchedMovie(title));
 });
 
 
